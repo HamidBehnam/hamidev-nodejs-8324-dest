@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express = require("express");
+var http = require("http");
+var routes_config_1 = require("./projects/routes.config");
+var db_service_1 = require("./common/services/db.service");
+var config_service_1 = require("./common/services/config.service");
+var routes_config_2 = require("./profiles/routes.config");
+db_service_1.dbService.connectDB();
+var app = express();
+var main = express();
+app.use(express.json());
+app.use(express.urlencoded());
+routes_config_2.profilesRoutesConfig(app);
+routes_config_1.projectsRoutesConfig(app);
+main.use('/api/v1', app);
+var server = http.createServer(main);
+server.listen(config_service_1.configService.port, function () {
+    return console.log("server is listening on " + config_service_1.configService.port);
+});
