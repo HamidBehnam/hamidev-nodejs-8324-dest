@@ -1168,6 +1168,10 @@
  */
 
 /*!
+ * The class that Mongoose uses internally to instantiate this SchemaType's `options` property.
+ */
+
+/*!
  * The exports object is an instance of Mongoose.
  *
  * @api public
